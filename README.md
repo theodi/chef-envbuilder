@@ -6,7 +6,7 @@ Build a [Dotenv](https://github.com/bkeepers/dotenv) configuration file from a d
 Usage
 -----
 
-We expect a data bag named ```envs```, containing items named ```$environment.json```; for example we have ```development.json``` which looks a bit like this:
+We expect a data bag named `envs`, containing items named `$environment.json`; for example we have `development.json` which looks a bit like this:
 
     {
       "id": "development",
@@ -51,14 +51,14 @@ The nesting can be arbitrarily deep, and doesn't really mean anything, it just m
     LEFTRONIC_GITHUB_FORKS: 987fgh
     LEFTRONIC_GITHUB_ISSUES: asdf1974
 
-The next step is to use this ```development``` data bag as a default, then define the deltas for other environments and merge them in. 
+The next step is to use this `development` data bag as a default, then define the deltas for other environments and merge them in. 
 
 Contributing
 ------------
 
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
-3. Write you change
+3. Write your change
 4. Write tests for your change (if applicable)
 5. Run the tests, ensuring they all pass
 6. Submit a Pull Request using Github
