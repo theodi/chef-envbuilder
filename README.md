@@ -31,8 +31,8 @@ We expect a data bag named `envs`, containing items named `$environment.json`; f
         "leftronic": {
           "api_key": "igot99problems",
           "github": {
-            "forks":"987fgh",
-            "issues":"asdf1974"
+            "forks": "987fgh",
+            "issues": "asdf1974"
           }
         }
       }
