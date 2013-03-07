@@ -24,16 +24,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-directory node["envbuilder"]["base_dir"] do
-  mode "0666"
-  action :create
-end
-
-dbi = data_bag_item(
-    node["envbuilder"]["data_bag"],
-    node["ENV"]
-)
-
 # so it turns out I didn't remember how to recursively walk a nested hash like this :/
 $l = []
 $m = []
@@ -54,7 +44,17 @@ def walk hash
   $l.pop
 end
 
+dbi = data_bag_item(
+    node["envbuilder"]["data_bag"],
+    node["ENV"]
+)
+
 walk dbi["content"]
+
+directory node["envbuilder"]["base_dir"] do
+  mode "0666"
+  action :create
+end
 
 file File.join(
          node["envbuilder"]["base_dir"],
