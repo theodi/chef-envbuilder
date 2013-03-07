@@ -36,7 +36,7 @@ We expect a data bag named `envs`, containing items named `$environment.json`; f
       }
     }
 
-The nesting can be arbitrarily deep, and doesn't really mean anything, it just makes it all a bit more readable. Each nested key will be joined to its parent key(s) with an underscore, and upcased, so the file generated from this data bag will look like this (in Dotenv's YAML-ish format):
+The nesting can be arbitrarily deep, and doesn't really mean anything, it just reduces redundancy and makes it all a bit more readable. Each nested key will be joined to its parent key(s) with an underscore, and upcased, so the file generated from this data bag will look like this (in Dotenv's YAML-ish format):
 
     CAPSULECRM_ACCOUNT_NAME: foobar
     CAPSULECRM_API_TOKEN: 123abc
@@ -51,7 +51,7 @@ The nesting can be arbitrarily deep, and doesn't really mean anything, it just m
     LEFTRONIC_GITHUB_FORKS: 987fgh
     LEFTRONIC_GITHUB_ISSUES: asdf1974
 
-The next step is to use this `development` data bag as a default, then define the deltas for other environments and merge them in.
+The next step is to use this `development` data bag as a default, then define the deltas for other environments and merge them in. And probably make a few more configurables available.
 
 There are also [some tests](https://github.com/theodi/cuke-chef/blob/feature-shared-env-thing/features/envcookbook/envcookbook.feature).
 
