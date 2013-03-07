@@ -13,26 +13,26 @@ We expect a data bag named `envs`, containing items named `$environment.json`; f
     {
       "id": "development",
       "content": {
-      "capsulecrm": {
-        "account_name": "foobar",
-        "api_token": "123abc",
-        "default_owner": "some_user"
-      },
-      "eventbrite": {
-        "api_key": "456xyz",
-        "organizer_id": "6031769",
-        "user_key": "s00pahs3kr3t"
-      },
-      "github": {
-        "login": "user",
-        "organisation": "theodi",
-        "password": "icouldtellyoubutthenidhavetokillyou"
-      },
-      "leftronic": {
-        "api_key": "igot99problems",
+        "capsulecrm": {
+          "account_name": "foobar",
+          "api_token": "123abc",
+          "default_owner": "some_user"
+        },
+        "eventbrite": {
+          "api_key": "456xyz",
+          "organizer_id": "6031769",
+          "user_key": "s00pahs3kr3t"
+        },
+        "github": {
+          "login": "user",
+          "organisation": "theodi",
+          "password": "icouldtellyoubutthenidhavetokillyou"
+        },
+        "leftronic": {
+          "api_key": "igot99problems",
           "github": {
-            "forks": "987fgh",
-            "issues": "asdf1974"
+            "forks":"987fgh",
+            "issues":"asdf1974"
           }
         }
       }
