@@ -51,7 +51,9 @@ The nesting can be arbitrarily deep, and doesn't really mean anything, it just m
     LEFTRONIC_GITHUB_FORKS: 987fgh
     LEFTRONIC_GITHUB_ISSUES: asdf1974
 
-The next step is to use this `development` data bag as a default, then define the deltas for other environments and merge them in. 
+The next step is to use this `development` data bag as a default, then define the deltas for other environments and merge them in.
+
+There are also [some tests](https://github.com/theodi/cuke-chef/blob/feature-shared-env-thing/features/envcookbook/envcookbook.feature).
 
 Contributing
 ------------
