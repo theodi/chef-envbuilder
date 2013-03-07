@@ -23,3 +23,39 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+
+directory "/home/env/" do
+  mode "0666"
+  action :create
+end
+
+dbi = data_bag_item(
+    "envs",
+    node["ENV"]
+)
+
+$l = []
+$m = []
+
+def walk hash
+  hash.each do |key, val|
+    $l << key
+    if val.is_a?(Hash)
+      walk val
+    else
+      $m << "%s: %s" % [
+          $l.join("_").upcase,
+          val
+      ]
+      $l.pop
+    end
+  end
+  $l.pop
+end
+
+walk dbi["content"]
+
+file "/home/env/env" do
+  action :create
+  content $m.join("\n")
+end
