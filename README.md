@@ -1,7 +1,9 @@
 Description
 ===========
 
-Build a [Dotenv](https://github.com/bkeepers/dotenv) configuration file from a data bag
+Build a [Dotenv](https://github.com/bkeepers/dotenv) configuration file from a data bag.
+
+Our use case is to have a single `env` file per node (containing **ALL THE THINGS**), to which all our apps symlink their `.env` files
 
 Usage
 -----
