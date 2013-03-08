@@ -25,22 +25,22 @@
 #
 
 # so it turns out I didn't remember how to recursively walk a nested hash like this :/
-def walk hash, l = [], m = []
+def walk hash, stack = [], output = []
   hash.each do |key, val|
-    l << key
+    stack << key
     if val.is_a?(Hash)
-      walk val, l, m
+      walk val, stack, output
     else
-      m << "%s: %s" % [
-          l.join("_").upcase,
+      output << "%s: %s" % [
+          stack.join("_").upcase,
           val
       ]
-      l.pop
+      stack.pop
     end
   end
-  l.pop
+  stack.pop
 
-  m.join "\n"
+  output.join "\n"
 end
 
 dbi = data_bag_item(
