@@ -72,4 +72,4 @@ License and Authors
 
 License: [MIT](http://opensource.org/licenses/MIT)
 
-Authors: [Sam Pikesley](http://twitter.com/pikesley), [The ODI](http://twitter.com/theoditech)
+Authors: [Sam Pikesley](http://twitter.com/pikesley), [The ODI](http://twitter.com/ukoditech)
