@@ -72,7 +72,7 @@ We also have some configurable attributes now:
 
 allowing us to specify various bits and pieces.
 
-There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature).
+There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature) (which, it occurs to me, won't work for anybody who's not us because you don't have our databags. Sorry).
 
 Contributing
 ------------
