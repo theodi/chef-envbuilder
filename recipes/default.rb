@@ -25,23 +25,22 @@
 #
 
 # so it turns out I didn't remember how to recursively walk a nested hash like this :/
-$l = []
-$m = []
-
-def walk hash
+def walk hash, l = [], m = []
   hash.each do |key, val|
-    $l << key
+    l << key
     if val.is_a?(Hash)
-      walk val
+      walk val, l, m
     else
-      $m << "%s: %s" % [
-          $l.join("_").upcase,
+      m << "%s: %s" % [
+          l.join("_").upcase,
           val
       ]
-      $l.pop
+      l.pop
     end
   end
-  $l.pop
+  l.pop
+
+  m.join "\n"
 end
 
 dbi = data_bag_item(
@@ -49,7 +48,7 @@ dbi = data_bag_item(
     node["ENV"]
 )
 
-walk dbi["content"]
+z = walk dbi["content"]
 
 directory node["envbuilder"]["base_dir"] do
   mode "0666"
@@ -61,5 +60,5 @@ file File.join(
          node["envbuilder"]["filename"]
      ) do
   action :create
-  content $m.join("\n")
+  content z
 end
