@@ -45,8 +45,15 @@ end
 
 dbi = data_bag_item(
     node["envbuilder"]["data_bag"],
+    node["envbuilder"]["base_dbi"]
+)
+
+layer = data_bag_item(
+    node["envbuilder"]["data_bag"],
     node["ENV"]
 )
+
+dbi["content"].update layer["content"]
 
 z = walk dbi["content"]
 

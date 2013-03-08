@@ -3,7 +3,7 @@ Description
 
 Build a [Dotenv](https://github.com/bkeepers/dotenv) configuration file from a data bag.
 
-Our use case is to have a single `env` file per node (containing **ALL THE THINGS**), to which all our apps symlink their `.env` files
+Our use case is to have a single `env` file per node (containing **ALL THE THINGS**), to which all our apps symlink their `.env` files.
 
 Usage
 -----
@@ -38,7 +38,7 @@ We expect a data bag named `envs`, containing items named `$environment.json`; f
       }
     }
 
-The nesting can be arbitrarily deep, and doesn't really mean anything, it just reduces redundancy and makes it all a bit more readable. Each nested key will be joined to its parent key(s) with an underscore, and upcased, so the file generated from this data bag will look like this (in Dotenv's YAML-ish format):
+The nesting can be arbitrarily deep, and doesn't really mean anything, it just reduces redundancy and makes it all a bit more readable. Each nested key will be joined to its parent key(s) with an underscore, and upcased, so the file generated from this JSON will look like this (in Dotenv's YAML-ish format):
 
     CAPSULECRM_ACCOUNT_NAME: foobar
     CAPSULECRM_API_TOKEN: 123abc
@@ -53,9 +53,26 @@ The nesting can be arbitrarily deep, and doesn't really mean anything, it just r
     LEFTRONIC_GITHUB_FORKS: 987fgh
     LEFTRONIC_GITHUB_ISSUES: asdf1974
 
-The next step is to use this `development` data bag as a default, then define the deltas for other environments and merge them in. And probably make a few more configurables available.
+We now support overrides: the values in the `development` JSON (by default, see below for configuration options) will be taken as defaults, to be superseded by the data for your node's actual environment. So we can have a `production.json` data bag item containing just this, for example:
 
-There are also [some tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature).
+    {
+      "eventbrite": {
+        "api_key": "qwerty123"
+      }
+    }
+    
+which will change just this value in the output.
+
+We also have some configurable attributes now:
+
+    default["envbuilder"]["base_dir"] = "/home/env"
+    default["envbuilder"]["filename"] = "env"
+    default["envbuilder"]["data_bag"] = "envs"
+    default["envbuilder"]["base_dbi"] = "development"
+
+allowing us to specify various bits and pieces.
+
+There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature).
 
 Contributing
 ------------
