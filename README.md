@@ -1,12 +1,10 @@
-Description
-===========
+# Description
 
 Build a [Dotenv](https://github.com/bkeepers/dotenv) configuration file from a data bag.
 
 Our use case is to have a single `env` file per node (containing **ALL THE THINGS**), to which all our apps symlink their `.env` files.
 
-Usage
------
+## Usage
 
 We expect a data bag named `envs`, containing items named `$environment.json`; for example we have `development.json` which looks a bit like this:
 
@@ -84,10 +82,9 @@ We also have some configurable attributes now:
 
 allowing us to specify various bits and pieces.
 
-There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature) (which, it occurs to me, won't work for anybody who's not us because you don't have our databags. Sorry).
+There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature) (which, it occurs to me, won't work for anybody who's not us because you don't have our databags. You'll have to sweeten to taste. Sorry.)
 
-Contributing
-------------
+## Contributing
 
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
@@ -96,8 +93,7 @@ Contributing
 5. Run the tests, ensuring they all pass
 6. Submit a Pull Request using Github
 
-License and Authors
--------------------
+## License and Authors
 
 License: [MIT](http://opensource.org/licenses/MIT)
 
