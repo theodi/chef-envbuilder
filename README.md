@@ -80,6 +80,7 @@ We also have some configurable attributes now:
     default["envbuilder"]["filename"] = "env"
     default["envbuilder"]["data_bag"] = "envs"
     default["envbuilder"]["base_dbi"] = "development"
+    default["envbuilder"]["joiner"] = "_"
 
 allowing us to specify various bits and pieces.
 

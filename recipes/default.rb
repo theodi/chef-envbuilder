@@ -38,7 +38,7 @@ def walk hash, stack = [], output = []
       walk val, stack, output
     else
       output << "%s: %s" % [
-          stack.join("_").upcase,
+          stack.join(node["envbuilder"]["joiner"]).upcase,
           val
       ]
       stack.pop
