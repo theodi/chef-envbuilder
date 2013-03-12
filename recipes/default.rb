@@ -25,31 +25,40 @@
 #
 
 # so it turns out I didn't remember how to recursively walk a nested hash like this :/
-def walk hash, stack = [], output = []
+def walk hash, stack = [], output = {}
   hash.each do |key, val|
     stack << key
-    if stack.length == 1
-      output << "#" * (key.length + 2)
-      output << "# %s" % [
-          key
-      ]
-    end
+#    if stack.length == 1
+#      output << "#" * (key.length + 2)
+#      output << "# %s" % [
+#          key
+#      ]
+#    end
     if val.is_a?(Hash)
       walk val, stack, output
     else
-      output << "%s: %s" % [
-          stack.join(node["envbuilder"]["joiner"]).upcase,
-          val
-      ]
+      output[stack.join(node["envbuilder"]["joiner"]).upcase] = val
       stack.pop
     end
   end
-  if stack.length == 1
-    output << ""
-  end
+#  if stack.length == 1
+#    output << ""
+#  end
   stack.pop
 
-  output.join "\n"
+  output
+end
+
+def dump_hash hash
+  s = ''
+  hash.each do |key, val|
+    s << "%s: %s\n" % [
+        key,
+        val
+    ]
+  end
+
+  s
 end
 
 dbi = data_bag_item(
@@ -62,12 +71,15 @@ layer = data_bag_item(
     node["ENV"]
 )
 
-dbi["content"].update layer["content"]
-
-z = walk dbi["content"]
+z = (walk dbi["content"]).update (walk layer["content"])
+content = dump_hash z
 
 directory node["envbuilder"]["base_dir"] do
   mode "0666"
+  owner node["envbuilder"]["owner"]
+  group node["envbuilder"]["group"]
+
+  recursive true
   action :create
 end
 
@@ -75,6 +87,9 @@ file File.join(
          node["envbuilder"]["base_dir"],
          node["envbuilder"]["filename"]
      ) do
+  owner node["envbuilder"]["owner"]
+  group node["envbuilder"]["group"]
+
   action :create
-  content z
+  content content
 end

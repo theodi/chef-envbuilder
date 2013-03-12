@@ -38,26 +38,15 @@ We expect a data bag named `envs`, containing items named `$environment.json`; f
 
 The nesting can be arbitrarily deep, and doesn't really mean anything, it just reduces redundancy and makes it all a bit more readable. Each nested key will be joined to its parent key(s) with an underscore, and upcased, so the file generated from this JSON will look like this (in Dotenv's YAML-ish format):
 
-    ############
-    # capsulecrm
     CAPSULECRM_ACCOUNT_NAME: foobar
     CAPSULECRM_API_TOKEN: 123abc
     CAPSULECRM_DEFAULT_OWNER: some_user
-
-    ############
-    # eventbrite
     EVENTBRITE_API_KEY: 456xyz
     EVENTBRITE_ORGANIZER_ID: 6031769
     EVENTBRITE_USER_KEY: s00pahs3kr3t
-
-    ########
-    # github
     GITHUB_LOGIN: user
     GITHUB_ORGANISATION: theodi
     GITHUB_PASSWORD: icouldtellyoubutthenidhavetokillyou
-
-    ###########
-    # leftronic
     LEFTRONIC_API_KEY: igot99problems
     LEFTRONIC_GITHUB_FORKS: 987fgh
     LEFTRONIC_GITHUB_ISSUES: asdf1974
