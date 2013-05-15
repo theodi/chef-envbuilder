@@ -28,12 +28,6 @@
 def walk hash, stack = [], output = {}
   hash.each do |key, val|
     stack << key
-#    if stack.length == 1
-#      output << "#" * (key.length + 2)
-#      output << "# %s" % [
-#          key
-#      ]
-#    end
     if val.is_a?(Hash)
       walk val, stack, output
     else
@@ -41,9 +35,6 @@ def walk hash, stack = [], output = {}
       stack.pop
     end
   end
-#  if stack.length == 1
-#    output << ""
-#  end
   stack.pop
 
   output
@@ -74,8 +65,22 @@ layer = data_bag_item(
 z = (walk dbi["content"]).update (walk layer["content"])
 content = dump_hash z
 
+group node["envbuilder"]["group"] do
+  action :create
+end
+
+user node["envbuilder"]["owner"] do
+  gid node["envbuilder"]["group"]
+  shell "/bin/bash"
+  home "/home/%s" % [
+      node["envbuilder"]["owner"]
+  ]
+  supports :manage_home => true
+  action :create
+end
+
 directory node["envbuilder"]["base_dir"] do
-  mode "0666"
+  mode "0755"
   owner node["envbuilder"]["owner"]
   group node["envbuilder"]["group"]
 
