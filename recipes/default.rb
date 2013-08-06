@@ -59,7 +59,7 @@ dbi = data_bag_item(
 
 layer = data_bag_item(
     node["envbuilder"]["data_bag"],
-    node["ENV"]
+    node["ENV"] || node.chef_environment
 )
 
 z = (walk dbi["content"]).update (walk layer["content"])

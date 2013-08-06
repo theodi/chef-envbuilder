@@ -54,12 +54,15 @@ The nesting can be arbitrarily deep, and doesn't really mean anything, it just r
 Because a lot of stuff will be common between environments, we now support overrides: the values in the `development` JSON (by default, see below for configuration options) will be taken as defaults, to be superseded by the data for the node's actual environment. So we can have a `production.json` data bag item containing just this, for example:
 
     {
-      "eventbrite": {
-        "api_key": "qwerty123"
+      "id": "production",
+      "content": {
+        "eventbrite": {
+          "api_key": "qwerty123"
+        }
       }
     }
     
-which will change just this value in the output.
+which will change just this value in the output. If you have multiple application environments, either explicitly set node["ENV"] or make sure your node.chef\_environment matches your the id of the data bag item.
 
 We also have some configurable attributes now:
 

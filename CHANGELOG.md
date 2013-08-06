@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of envbuilder.
 
+## 0.2.0:
+
+* Default to using `node.chef_environment` if `node['ENV']`` is not set
+  ([@prognostikos](https://github.com/prognostikos))
+
 ## 0.1.0:
 
 * Initial release of envbuilder
