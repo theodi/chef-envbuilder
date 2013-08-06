@@ -71,8 +71,9 @@ We also have some configurable attributes now:
     default["envbuilder"]["data_bag"] = "envs"
     default["envbuilder"]["base_dbi"] = "development"
     default["envbuilder"]["joiner"] = "_"
+    default["envbuilder"]["use_encrypted_data_bag"] = false
 
-allowing us to specify various bits and pieces.
+allowing us to specify various bits and pieces. If `default["envbuilder"]["use_encrypted_data_bag"]` is set to true, the recipe will look in an encrypted data bag rather than a normal data bag. It will use the defaults for finding the secret to decrypt the data bag.
 
 There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature) (which, it occurs to me, won't work for anybody who's not us because you don't have our databags. You'll have to sweeten to taste. Sorry.)
 

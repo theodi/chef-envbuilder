@@ -5,3 +5,4 @@ default["envbuilder"]["group"] = "root"
 default["envbuilder"]["data_bag"] = "envs"
 default["envbuilder"]["base_dbi"] = "development"
 default["envbuilder"]["joiner"] = "_"
+default["envbuilder"]["use_encrypted_data_bag"] = false
