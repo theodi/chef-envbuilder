@@ -104,6 +104,7 @@ file File.join(
          node["envbuilder"]["base_dir"],
          node["envbuilder"]["filename"]
      ) do
+  mode node["envbuilder"]["file_permissions"]
   owner node["envbuilder"]["owner"]
   group node["envbuilder"]["group"]
 

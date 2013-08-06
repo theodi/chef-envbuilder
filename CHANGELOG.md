@@ -8,6 +8,8 @@ This file is used to list changes made in each version of envbuilder.
   ([@prognostikos](https://github.com/prognostikos))
 * Add the ability to use an encrypted data bag
   ([@prognostikos](https://github.com/prognostikos))
+* Add the ability to configure the permissions/mode of the generated file
+  ([@prognostikos](https://github.com/prognostikos))
 
 ## 0.1.0:
 

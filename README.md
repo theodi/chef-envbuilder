@@ -72,6 +72,7 @@ We also have some configurable attributes now:
     default["envbuilder"]["base_dbi"] = "development"
     default["envbuilder"]["joiner"] = "_"
     default["envbuilder"]["use_encrypted_data_bag"] = false
+    default["envbuilder"]["file_permissions"] = "0644"
 
 allowing us to specify various bits and pieces. If `default["envbuilder"]["use_encrypted_data_bag"]` is set to true, the recipe will look in an encrypted data bag rather than a normal data bag. It will use the defaults for finding the secret to decrypt the data bag.
 
