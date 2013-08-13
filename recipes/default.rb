@@ -52,18 +52,30 @@ def dump_hash hash
   s
 end
 
-dbi = data_bag_item(
-    node["envbuilder"]["data_bag"],
-    node["envbuilder"]["base_dbi"]
+def use_encrypted_data_bag?
+  !!node["envbuilder"]["use_encrypted_data_bag"]
+end
+
+def bag_item(bag_name, item_name)
+  if use_encrypted_data_bag?
+    Chef::EncryptedDataBagItem.load(bag_name, item_name)
+  else
+    data_bag_item(bag_name, item_name)
+  end
+end
+
+default_item = bag_item(
+  node["envbuilder"]["data_bag"],
+  node["envbuilder"]["base_dbi"]
 )
 
-layer = data_bag_item(
-    node["envbuilder"]["data_bag"],
-    node["ENV"]
+environment_item = bag_item(
+  node["envbuilder"]["data_bag"],
+  node["ENV"] || node.chef_environment
 )
 
-z = (walk dbi["content"]).update (walk layer["content"])
-content = dump_hash z
+merged_item = (walk default_item["content"]).update (walk environment_item["content"])
+content = dump_hash merged_item
 
 group node["envbuilder"]["group"] do
   action :create
@@ -92,6 +104,7 @@ file File.join(
          node["envbuilder"]["base_dir"],
          node["envbuilder"]["filename"]
      ) do
+  mode node["envbuilder"]["file_permissions"]
   owner node["envbuilder"]["owner"]
   group node["envbuilder"]["group"]
 
