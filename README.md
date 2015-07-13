@@ -51,7 +51,7 @@ The nesting can be arbitrarily deep, and doesn't really mean anything, it just r
     LEFTRONIC_GITHUB_FORKS: 987fgh
     LEFTRONIC_GITHUB_ISSUES: asdf1974
 
-Because a lot of stuff will be common between environments, we now support overrides: the values in the `development` JSON (by default, see below for configuration options) will be taken as defaults, to be superseded by the data for the node's actual environment. So we can have a `production.json` data bag item containing just this, for example:
+Because a lot of stuff will be common between environments, we support overrides: the values in the `development` JSON (by default, see below for configuration options) will be taken as defaults, to be superseded by the data for the node's actual environment. So we can have a `production.json` data bag item containing just this, for example:
 
     {
       "id": "production",
@@ -61,10 +61,10 @@ Because a lot of stuff will be common between environments, we now support overr
         }
       }
     }
-    
-which will change just this value in the output. If you have multiple application environments, either explicitly set node["ENV"] or make sure your node.chef\_environment matches your the id of the data bag item.
 
-We also have some configurable attributes now:
+which will change just this value in the output. If you have multiple application environments, either explicitly set `node["ENV"]` or make sure your `node.chef_environment` matches the id of the data bag item.
+
+We also have some configurable attributes:
 
     default["envbuilder"]["base_dir"] = "/home/env"
     default["envbuilder"]["filename"] = "env"
@@ -76,19 +76,13 @@ We also have some configurable attributes now:
 
 allowing us to specify various bits and pieces. If `default["envbuilder"]["use_encrypted_data_bag"]` is set to true, the recipe will look in an encrypted data bag rather than a normal data bag. It will use the defaults for finding the secret to decrypt the data bag.
 
-There are also [some](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook.feature) [tests](https://github.com/theodi/cuke-chef/blob/master/features/envcookbook/envcookbook-production.feature) (which, it occurs to me, won't work for anybody who's not us because you don't have our databags. You'll have to sweeten to taste. Sorry.)
+## Tests
 
-## Contributing
+This cookbook is test-driven with [Test Kitchen](http://kitchen.ci). The  [tests](https://github.com/theodi/chef-envbuilder/blob/master/test/integration/default/serverspec/env_spec.rb) [are](https://github.com/theodi/chef-envbuilder/blob/master/test/integration/staging/serverspec/env_spec.rb)  [here](https://github.com/theodi/chef-envbuilder/blob/master/test/integration/production/serverspec/env_spec.rb). To run them:
 
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+    git clone https://github.com/theodi/chef-envbuilder
+    cd chef-envbuilder
+    bundle
+    bundle exec kitchen test
 
-## License and Authors
-
-License: [MIT](http://opensource.org/licenses/MIT)
-
-Authors: [Sam Pikesley](http://twitter.com/pikesley), [The ODI](http://twitter.com/ukoditech)
+You'll need a local Docker server (I use [boot2docker](http://boot2docker.io/)) for this, although with minimal fiddling you can get it working with Vagrant.
