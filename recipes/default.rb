@@ -74,7 +74,19 @@ environment_item = bag_item(
   node["ENV"] || node.chef_environment
 )
 
+master_list = walk bag_item(
+  node["envbuilder"]["data_bag"],
+  'master_list'
+)['content']
+
 merged_item = (walk default_item["content"]).update (walk environment_item["content"])
+
+merged_item.each do |k, v|
+  if v == 'DEFAULT'
+    merged_item[k] = master_list[k]
+  end
+end
+
 content = dump_hash merged_item
 
 group node["envbuilder"]["group"] do

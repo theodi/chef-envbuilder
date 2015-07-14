@@ -4,6 +4,7 @@
     "default": "overridden",
     "just": {
       "cannot": "even"
-    }
+    },
+    "key": "DEFAULT"
   }
 }
