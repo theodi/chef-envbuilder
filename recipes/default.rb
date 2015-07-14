@@ -28,10 +28,10 @@ class Chef::Recipe
   include ODI::Envbuilder::Helpers
 end
 
-default_data = walk bag_item(
-  node["envbuilder"]["data_bag"],
-  node["envbuilder"]["base_dbi"]
-)['content']
+#default_data = walk bag_item(
+#  node["envbuilder"]["data_bag"],
+#  node["envbuilder"]["base_dbi"]
+#)['content']
 
 environment_data = walk bag_item(
   node["envbuilder"]["data_bag"],
@@ -43,15 +43,15 @@ master_list = walk bag_item(
   'master_list'
 )['content']
 
-merged_data = (default_data).update (environment_data)
+#merged_data = (default_data).update (environment_data)
 
-merged_data.each do |k, v|
+environment_data.each do |k, v|
   if v == 'DEFAULT'
-    merged_data[k] = master_list[k]
+    environment_data[k] = master_list[k]
   end
 end
 
-content = dump_hash merged_data
+content = dump_hash environment_data
 
 group node["envbuilder"]["group"] do
   action :create
