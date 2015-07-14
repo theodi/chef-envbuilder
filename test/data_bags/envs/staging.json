@@ -1,6 +1,7 @@
 {
   "id": "staging",
   "content" : {
-    "what": "even"
+    "what": "even",
+    "key": "staging-specific"
   }
 }

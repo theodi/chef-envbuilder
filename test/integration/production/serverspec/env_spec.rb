@@ -6,4 +6,5 @@ describe file '/home/vagrant/env' do
   its(:content) { should match /DEFAULT: overridden/ }
   its(:content) { should match /JUST_CANNOT: even/ }
   its(:content) { should match /KEY: from_master_list/ }
+  its(:content) { should match /A_THING: this-is-a-value/ }
 end
