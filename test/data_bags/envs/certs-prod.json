@@ -1,0 +1,10 @@
+{
+  "id": "certs-prod",
+  "content" : {
+    "default": "overridden",
+    "just": {
+      "cannot": "even"
+    },
+    "key": "DEFAULT"
+  }
+}

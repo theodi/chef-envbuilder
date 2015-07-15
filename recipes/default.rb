@@ -30,7 +30,7 @@ end
 
 environment_data = walk bag_item(
   node["envbuilder"]["data_bag"],
-  node["ENV"] || node.chef_environment
+  node.chef_environment
 )['content']
 
 master_list = walk bag_item(

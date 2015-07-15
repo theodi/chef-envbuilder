@@ -14,7 +14,7 @@ suites:
   - name: staging
     provisioner:
       client_rb:
-        environment: staging
+        environment: certs-stg
     run_list:
       - recipe[envbuilder::default]
     attributes:
@@ -26,7 +26,7 @@ suites:
   - name: production
     provisioner:
       client_rb:
-        environment: production
+        environment: certs-prod
     run_list:
       - recipe[envbuilder::default]
     attributes:

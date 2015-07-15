@@ -1,0 +1,7 @@
+{
+  "id": "certs-stg",
+  "content" : {
+    "what": "even",
+    "key": "staging-specific"
+  }
+}
