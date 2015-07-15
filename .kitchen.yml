@@ -11,15 +11,6 @@ platforms:
   - name: ubuntu-14.04
 
 suites:
-  - name: default
-    run_list:
-      - recipe[envbuilder::default]
-    attributes:
-      envbuilder:
-        owner: vagrant
-        group: vagrant
-        base_dir: /home/vagrant
-
   - name: staging
     provisioner:
       client_rb:

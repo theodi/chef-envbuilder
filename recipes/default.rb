@@ -24,58 +24,27 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-# so it turns out I didn't remember how to recursively walk a nested hash like this :/
-def walk hash, stack = [], output = {}
-  hash.each do |key, val|
-    stack << key
-    if val.is_a?(Hash)
-      walk val, stack, output
-    else
-      output[stack.join(node["envbuilder"]["joiner"]).upcase] = val
-      stack.pop
-    end
-  end
-  stack.pop
-
-  output
+class Chef::Recipe
+  include ODI::Envbuilder::Helpers
 end
 
-def dump_hash hash
-  s = ''
-  hash.each do |key, val|
-    s << "%s: %s\n" % [
-        key,
-        val
-    ]
-  end
-
-  s
-end
-
-def use_encrypted_data_bag?
-  !!node["envbuilder"]["use_encrypted_data_bag"]
-end
-
-def bag_item(bag_name, item_name)
-  if use_encrypted_data_bag?
-    Chef::EncryptedDataBagItem.load(bag_name, item_name)
-  else
-    data_bag_item(bag_name, item_name)
-  end
-end
-
-default_item = bag_item(
-  node["envbuilder"]["data_bag"],
-  node["envbuilder"]["base_dbi"]
-)
-
-environment_item = bag_item(
+environment_data = walk bag_item(
   node["envbuilder"]["data_bag"],
   node["ENV"] || node.chef_environment
-)
+)['content']
 
-merged_item = (walk default_item["content"]).update (walk environment_item["content"])
-content = dump_hash merged_item
+master_list = walk bag_item(
+  node["envbuilder"]["data_bag"],
+  'master_list'
+)['content']
+
+environment_data.each do |k, v|
+  if v == 'DEFAULT'
+    environment_data[k] = master_list[k]
+  end
+end
+
+content = dump_hash environment_data
 
 group node["envbuilder"]["group"] do
   action :create

@@ -1,6 +1,9 @@
 {
   "id": "development",
   "content" : {
-    "default": "value"
+    "default": "value",
+    "a": {
+      "thing": "DEFAULT"
+    }
   }
 }

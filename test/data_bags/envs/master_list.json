@@ -1,0 +1,14 @@
+{
+  "id": "master_list",
+  "content" : {
+    "key": "from_master_list",
+    "some": {
+      "other": {
+        "key": "this-won't-be-used"
+      }
+    },
+    "a": {
+      "thing": "this-is-a-value"
+    }
+  }
+}
